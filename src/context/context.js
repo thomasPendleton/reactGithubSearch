@@ -10,10 +10,18 @@ const GithubContext = React.createContext()
 //Provider, consumer are accessible after creating context from react.
 // GithubContext.Provider
 
-const GithubProvider = ({children}) => {
-  return (
-    <GithubContext.Provider value={'hello'}>{children}</GithubContext.Provider>
-  )
-}
+const GithubProvider = ({ children }) => {
+  const [githubUser, setGithubUser] = useState(mockUser);
+  const [githubRepos, setGithubRepos] = useState(mockRepos);
+  const [githubFollowers, setGithubFollowers] = useState(mockFollowers);
 
-export default GithubProvider
+  return (
+    <GithubContext.Provider
+      value={{ githubFollowers, githubRepos, githubUser }}
+    >
+      {children}
+    </GithubContext.Provider>
+  );
+};
+
+export { GithubProvider, GithubContext };
