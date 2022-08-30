@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import Card from './Card';
 import Followers from './Followers';
 const User = () => {
-  return <section>
-      <Wrapper className='section'>
-        <Card className='section-center'></Card>
+  return <section className='section'>
+      <Wrapper className='section-center'>
+        <Card></Card>
         <Followers>/</Followers>
       </Wrapper>
     </section>;
