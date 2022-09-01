@@ -25,12 +25,16 @@ const Card = () => {
         </div>
         <a href={html_url}>Follow</a>
       </header>
-      <p className="bio">{bio}</p>
+      {bio && <p className="bio">{bio}</p>}
+
       <div className="links">
-        <p>
-          <MdBusiness></MdBusiness>
-          {company}
-        </p>
+        {company && (
+          <p>
+            <MdBusiness></MdBusiness>
+            {company}
+          </p>
+        )}
+
         <p>
           <MdLocationOn></MdLocationOn>
           {location || "somewhere"}

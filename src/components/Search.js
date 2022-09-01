@@ -8,18 +8,24 @@ const Search = () => {
   const [user, setUser] = React.useState("");
 
   // get things from global context
-  const { rateRemaining } = React.useContext(GithubContext);
-
+  const { requestsRemaining, error, searchGithubUser, isLoading } = React.useContext(GithubContext);
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
+
     if (user) {
+      searchGithubUser(user)
     }
   };
 
   return (
     <section className="section">
       <Wrapper className="section-center">
+        {error.show && (
+          <ErrorWrapper>
+            <p>{error.msg}</p>
+          </ErrorWrapper>
+        )}
         <form onSubmit={handleSubmit}>
           <div className="form-control">
             <MdSearch></MdSearch>
@@ -30,10 +36,10 @@ const Search = () => {
               type="text"
               placeholder="enter github user"
             />
-            <button type="submit">Search</button>
+            {requestsRemaining > 0 && !isLoading && <button type="submit">Search</button>}
           </div>
         </form>
-        <h3>requests: {rateRemaining} / 60</h3>
+        <h3>requests: {requestsRemaining} / 60</h3>
       </Wrapper>
     </section>
   );
